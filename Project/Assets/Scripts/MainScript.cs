@@ -13,8 +13,9 @@ public class MainScript : MonoBehaviour {
     public GameObject Unit_Pos_Controller;
     public float Last_time = 0f;
     public static bool Selected_Type_Unit = false;
-    public bool IsBuilding;
-    public bool Area_Clear = true;
+    public static bool IsBuilding;
+    public static bool Area_Clear = true;
+    public static bool Panel_Active = false;
 
     public static List<GameObject> UnitsOnScreen = new List<GameObject>();
     public static List<GameObject> UnitsInDrag = new List<GameObject>();
@@ -49,8 +50,20 @@ public class MainScript : MonoBehaviour {
     // RayCastHit Stores the Vector3 position of where the mouse is
     public static RaycastHit Raycast_hit()
     {
-        RaycastHit hit = GameObject.Find("Ground").GetComponent<BuildingScript>().Location();
+        RaycastHit hit = BuildingScript.Location();
         return (hit);
+    }
+
+    // Checks if the user clicks outside of the UI Panel.
+    public static bool IfClickedOutsidePanel()
+    {
+        GameObject Panel = GameObject.Find("Canvas").GetComponent<CanvasScript>().Panel;
+        if (Panel.activeSelf && !RectTransformUtility.RectangleContainsScreenPoint(Panel.GetComponent<RectTransform>(), Input.mousePosition))
+        {
+            return (true); 
+        }
+        else return false;
+       
     }
 
     // If Shift Key is being pressed.
@@ -213,12 +226,11 @@ public class MainScript : MonoBehaviour {
         }
     }
 
-    // ---------------------------------------------------      Main Code    ------------------------------------------------------------------\\
+        // ---------------------------------------------------      Main Code    ------------------------------------------------------------------\\
 
     // Use this for initialization
     void Start() {
         GameObject.Find("Ground").GetComponent<BuildingScript>().BuildingType = 1;
-
     }
 
     // Update is called once per frame
@@ -226,6 +238,10 @@ public class MainScript : MonoBehaviour {
         RaycastHit hit = Raycast_hit();
         CurrentMousePoint = hit.point;
         SelectAll(true);
+        if (Selected.Count == 0)
+        {
+            Selected_Type_Unit = false;
+        }
 
         // ---------------------------------------------------    Left Click Functions  ------------------------------------------------------------------\\
  
@@ -239,9 +255,13 @@ public class MainScript : MonoBehaviour {
         // Left Click UP.
         else if (Input.GetMouseButtonUp(0))
         {
+            // If they click without pressing shift and no UI is open de select all.
             if (!IsShiftKeyDown())
             {
-                MainScript.SelectAll(false);
+                if (!GameObject.Find("Canvas").GetComponent<CanvasScript>().Panel.activeSelf)
+                {
+                    MainScript.SelectAll(false);
+                }
             }
             // If they release left mouse button within two second , just a click:
             if (Time.time - Last_time < 0.2)
@@ -256,9 +276,11 @@ public class MainScript : MonoBehaviour {
                         // If the user clicks on a building.
                         if (hit.transform.gameObject.tag == "Building")
                         {
+                            MainScript.SelectAll(false);
                             MainScript.Selected_Type_Unit = false;
                             Debug.Log("Building clicked" + hit.transform.gameObject.name);
                             MainScript.Selected.Add(hit.transform.gameObject);
+                            // Nifty stick, removes brackets and contents from the string. \\
                             string Value = hit.transform.gameObject.name;
                             int firstBracket = Value.IndexOf('(');
                             int lastBracket = Value.LastIndexOf(')');
@@ -277,18 +299,19 @@ public class MainScript : MonoBehaviour {
                             }
 
                         }
+
+                        // if object is a unit.
                         else if (hit.transform.gameObject.tag == "Unit")
                         {
                             MainScript.Selected_Type_Unit = true;
                             MainScript.Selected.Add(hit.transform.gameObject);
                         }
-                        else
+
+                        else if (MainScript.IfClickedOutsidePanel())
                         {
                             GameObject.Find("Canvas").GetComponent<CanvasScript>().ActivateUi(0);
+                            MainScript.SelectAll(false);
                         }
-
-
-
                     }
                     // If Shift is being pressed:
                     else {
@@ -320,11 +343,17 @@ public class MainScript : MonoBehaviour {
                                     MainScript.Selected.Add(hit.transform.gameObject);
                                     Debug.Log("Unit Selected");
                                 }
+                                else
+                                {
+                                    MainScript.Selected.Remove(hit.transform.gameObject);
+                                    hit.transform.gameObject.GetComponent<UnitScript>().Selected = false;
+                                    Debug.Log("Unit Deselected");
+                                }
                             }
                         }
                     }
                 }
-                else if (GameObject.Find("MainScript").GetComponent<MainScript>().Area_Clear == true){
+                else if (Area_Clear == true){
                 GameObject.Find("Ground").GetComponent<BuildingScript>().BuildingType = 0;  
                 }
             }
@@ -404,12 +433,7 @@ public class MainScript : MonoBehaviour {
         {
             if (IsBuilding == true)
             {
-                GameObject.Find("Ground").GetComponent<BuildingScript>().RotateBuildingPass();
-
-            }
-            else
-            {
-
+                GameObject.Find("Ground").GetComponent<BuildingScript>().RotateBuilding();
             }
         }
 

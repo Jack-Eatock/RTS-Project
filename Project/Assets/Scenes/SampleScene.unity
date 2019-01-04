@@ -4092,7 +4092,7 @@ MonoBehaviour:
   Panel: {fileID: 1165411045}
   Basic_Building: {fileID: 1893856598}
   Selected_UI: {fileID: 800100885}
-  UiNeeded_Last: 200
+  UiNeeded_Last: -1
 --- !u!114 &710469068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7293,7 +7293,7 @@ RectTransform:
   m_GameObject: {fileID: 1165411045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.45, y: 0.40634385, z: 1}
+  m_LocalScale: {x: 2.448469, y: 0.40634385, z: 1}
   m_Children:
   - {fileID: 1893856599}
   - {fileID: 1698007947}
@@ -7303,7 +7303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 10, y: 83}
+  m_AnchoredPosition: {x: 5, y: 83}
   m_SizeDelta: {x: 791.84, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165411047
@@ -8305,8 +8305,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.4, y: 2.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 256.5, y: -13.3}
+  m_SizeDelta: {x: 198.38, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401913891
 MonoBehaviour:
@@ -8327,7 +8327,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Coming soon!
+  m_text: ' MAKE THIS!!!!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8354,8 +8354,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8392,13 +8392,13 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -165.06418, w: 0}
+  m_margin: {x: 0, y: 0, z: -44.83726, w: 0}
   m_textInfo:
     textComponent: {fileID: 1401913891}
-    characterCount: 12
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -9761,7 +9761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1698007947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10779,7 +10779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -276.0225, y: -61.00003}
+  m_AnchoredPosition: {x: -315.5, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1899075320
@@ -10903,7 +10903,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingType: 0
-  Global_Build: {fileID: 534669902}
   Grids: {fileID: 2100000, guid: d23b4d71a39c21e49a664f872dfeb7bf, type: 2}
   Grass: {fileID: 2100000, guid: 97dd4b6fce3d81b4fae40ffde5a85621, type: 2}
   Castle: {fileID: 11400000, guid: bdeb370e5dcd5a34b8233957f754d3c6, type: 2}
@@ -11577,14 +11576,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Condition: 
-  Cam: {fileID: 0}
+  Cam: {fileID: 534669904}
   Unit_Pos_Prefab: {fileID: 1711493442644250, guid: e9e3791009c41e042ba7a6b92e95ee58,
     type: 2}
   Unit_Pos_Controller: {fileID: 1010368062194906, guid: f70cf00d4b6c2b94198fb00b9f0cbef7,
     type: 2}
   Last_time: 0
-  IsBuilding: 1
-  Area_Clear: 1
   FirstLoop: 0
   MarkerPrefab: {fileID: 1689994157536304, guid: aee8dfe0b1f85cb438fe6bef9cb52eaf,
     type: 2}

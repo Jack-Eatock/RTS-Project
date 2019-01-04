@@ -11,4 +11,6 @@ public class BuildingSO : ScriptableObject {
     public int BuildingType;
     public GameObject Building_Prefab;
 
+
+
 }

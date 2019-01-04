@@ -6,7 +6,7 @@ public class CameraControl : MonoBehaviour {
 
     public float FF = 15f; // Forward Force.
     public float SF = 15f; // Sideways Force.
-    public float scrollspeed = 10f; // Scroll speed
+    public float scrollspeed = 5f; // Scroll speed
     public float scroll;
 
     public GameObject Movement;
@@ -59,7 +59,7 @@ public class CameraControl : MonoBehaviour {
 
         // Scroll wheel,
         scroll = Input.GetAxis("Mouse ScrollWheel");
-        Pos.y -= scroll * scrollspeed * -50f * Time.deltaTime;
+        Pos.y -= scroll * scrollspeed * -35f * Time.deltaTime;
 
 
         // Moving The Camera,

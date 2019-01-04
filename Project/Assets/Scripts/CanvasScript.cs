@@ -8,14 +8,14 @@ public class CanvasScript : MonoBehaviour {
     public GameObject Panel;
     public GameObject Basic_Building;
     public TextMeshProUGUI Selected_UI;
+    public int UiNeeded_Last = -1;
 
-
-    public int UiNeeded_Last = 200;
     public  void ActivateUi( int UiNeeded)
     {
         Debug.Log("Ui Needed:" + UiNeeded+ "Last :"+ UiNeeded_Last);
-        if (UiNeeded_Last != 200)
-        { 
+        if (UiNeeded_Last != -1)
+        {
+            MainScript.Panel_Active = true;
             if (UiNeeded_Last == 1)
             {
                 Castle_UI.SetActive(false);
@@ -32,6 +32,10 @@ public class CanvasScript : MonoBehaviour {
             {
 
             }
+        }
+        else
+        {
+            MainScript.Panel_Active = false;
         }
 
         UiNeeded_Last = UiNeeded;
