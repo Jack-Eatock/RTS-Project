@@ -10,6 +10,7 @@ public class UnitScript : MonoBehaviour {
     public bool Selected = false;
     public GameObject SelectionBox;
     private bool SelectionTrigger = false;
+    private List<int> UnitSkills = new List<int>();
 
     void Update()
     {

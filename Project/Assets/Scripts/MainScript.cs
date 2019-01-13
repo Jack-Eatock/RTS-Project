@@ -519,8 +519,6 @@ public class MainScript : MonoBehaviour {
                                         BoxStart.y - Unsigned(Box_Height)
                     );
 
-                Debug.Log(BoxStart + BoxFinish);
-
                 GUI.Box(new Rect(BoxLeft,
                                     BoxTop,
                                     Box_Width,

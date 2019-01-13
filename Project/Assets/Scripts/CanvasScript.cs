@@ -65,4 +65,13 @@ public class CanvasScript : MonoBehaviour {
 
         }
     }
+
+
+    // Button clicked \\
+
+
+    public void OnSpawnWorker()
+    {
+        Debug.Log("Spawn Worker");
+    }
 }
